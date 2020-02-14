@@ -1,3 +1,40 @@
+
+try:
+    def fileReader(path):
+        with open(path, 'r') as madscript:
+            return madscript.read()
+
+except IOError:
+    print("Could not Read File")
+
+
+# Function that Creates a File
+def file_writer(path, value):
+    with open(path, 'w') as madscomplete:
+        return madscomplete.write(value)
+
+# Function that replaces all the fillers for {}
+
+
+def replacer():
+    scriptcontent = fileReader('madlib.txt')
+    cleanscript = scriptcontent.replace("{Adjective}", "{}").replace("{A First Name}", "{}").replace("{Plural Noun}", "{}").replace("{Past Tense Verb}", "{}").replace(
+        "{Large Animal}", "{}").replace("{Small Animal}", "{}").replace("{A Girl's Name}", "{}").replace("{Number}", "{}").replace("{First Name's}", "{}")
+    return cleanscript
+
+
+# Function that sets all the parameters for the questions
+def strinserter(adjective_one, adjective_two, first_name, past_tense, second_name, adjective_three, adjective_four, plural_noun, large_animal, small_animal, girls_name,
+                adjective_five, second_plural, adjective_six, third_plural, number, another_name, second_number, fourth_plural, third_number, last_plural):
+    cleanscript = replacer()
+    formattedscript = cleanscript.format(adjective_one, adjective_two, first_name, past_tense, second_name, adjective_three, adjective_four, plural_noun, large_animal,
+                                         small_animal, girls_name, adjective_five, second_plural, adjective_six, third_plural, number, another_name, second_number, fourth_plural, third_number, last_plural)
+    print(formattedscript)
+    file_writer('gamecomplete.txt', formattedscript)
+    return formattedscript
+
+
+
 def print_intro():
     print("**************************************")
     print("**        Welcome to Madlibs!       **")
@@ -10,43 +47,33 @@ def print_intro():
 print_intro()
 
 
-adj_one = input("Enter an adjective: ")
-adj_two = input("Enter another adjective: ")
-first_name_one = input("Enter a first name: ")
-past_verb = input("Enter a Past Tense Verb: ")
-first_name_two = input("Enter another first name: ")
-adj_three = input("Enter another adjective: ")
-adj_four = input("Enter another adjective: ")
-plural_noun_one = input("Enter a plural noun: ")
-large_animal = input ("Enter a large animal: ")
-small_animal = input("Enter a small animal: ")
-girl_name = input("Enter a girl's name: ")
-adj_five = input("Enter another adjective: ")
-plural_noun_two = input("Enter another plural noun: ")
-adj_six = input("Enter another Adjective: ")
-plural_noun_three = input("Enter another plural noun: ")
-numb_one = input("Enter a number between 1 and 50: ")
-first_name_three = input("Enter another first name: ")
-numb_two = input("Enter a number: ")
-plural_noun_four = input("Enter another plural noun: ")
-numb_three = input("Enter another number: ")
-plural_noun_five = input("Enter another plural noun: ")
+def inputfunction():
+    while True:
+        adjective_one = input('Please Enter an Adjective: ')
+        adjective_two = input('Please Enter a Second Adjective: ')
+        first_name = input('Please Enter a First Name:')
+        past_tense = input('Please Enter a Past Tense Verb: ')
+        second_name = input('Please Enter a Second Name: ')
+        adjective_three = input('Please Enter a Third Adjective: ')
+        adjective_four = input('Please Enter a Fourth Adjective: ')
+        plural_noun = input('Please Enter a Plural Noun: ')
+        large_animal = input('Please Enter a Large Animal: ')
+        small_animal = input('Please Enter a Small Animal: ')
+        girls_name = input('Please Enter a Girls Name: ')
+        adjective_five = input('Please Enter a Fifth Adjective: ')
+        second_plural = input('Please Enter a Second Plural Noun: ')
+        adjective_six = input("Please Enter a Sixth Adjective: ")
+        third_plural = input('Please Enter a Third Plural Noun: ')
+        number = input("Please Enter a Number from 1-50: ")
+        another_name = input('Please Enter another Name: ')
+        second_number = input("Please Enter a Second Number: ")
+        fourth_plural = input('Please Enter a Fourth Plural: ')
+        third_number = input('Please Enter a Third Number: ')
+        last_plural = input('Please Enter a fifth Plural')
+        print("*" * 42)
+        strinserter(adjective_one, adjective_two, first_name, past_tense, second_name, adjective_three, adjective_four, plural_noun, large_animal, small_animal,
+                    girls_name, adjective_five, second_plural, adjective_six, third_plural, number, another_name, second_number, fourth_plural, third_number, last_plural)
+        break
 
 
-def mad_string():
-    return (f"Make Me A Video Game! \n I the {adj_one} and {adj_two} {first_name_one} have {past_verb} {first_name_one}'s {adj_three} sister and plan to steal her {adj_four} {plural_noun_one}! \n What are a {large_animal} and backpacking {small_animal} to do? Before you can help {girl_name}, you'll have to collect \n the {adj_five} {plural_noun_two} and {adj_six} {plural_noun_three} that open up the {numb_one} worlds connected \n to A {first_name_three} Lair. There are {numb_two} {plural_noun_four} and {numb_three} {plural_noun_five} in the game, \n along with hundreds of other goodies for you to find.")
-
-
-def print_story():
-    mad_lib = mad_string()
-    print("******************************************************************************")
-    print(mad_lib)
-    print("*****************************************************************************")
-    write_file('completed_lib.txt', mad_lib)
- 
-
-def write_file(path, contents):
-    with open(path, 'w') as f:
-        f.write(contents)
-
-print_story()
+inputfunction()
